@@ -1,0 +1,20 @@
+CREATE TABLE Filmes(
+    idFilme INTEGER NOT NULL,
+    tituloFilme VARCHAR(255),
+    anoDeLancamento INT,
+    
+    PRIMARY KEY(idFilme)
+);
+
+CREATE TABLE Ator(
+    idAtor INTEGER NOT NULL,
+    nomeAtor VARCHAR(255),
+    dataDeNascimento DATE,
+    
+    PRIMARY KEY(idAtor)
+);
+
+CREATE TABLE FILME_ATOR(
+	atorId INTEGER NOT NULL,
+    filmeId INTEGER NOT NULL
+)
