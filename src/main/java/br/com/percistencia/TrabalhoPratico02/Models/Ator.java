@@ -4,13 +4,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQuery(name = "Ator.addFilme", query = "DELETE FROM Ator a WHERE a.idAtor = :id")
 @Table(name = "Ator")
 public class Ator {
 

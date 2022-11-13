@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQuery(name = "Filmes.addFilme", query = "DELETE FROM Filme f WHERE f.idFilme = :id")
 @Table(name = "Filmes")
 public class Filme {
 
