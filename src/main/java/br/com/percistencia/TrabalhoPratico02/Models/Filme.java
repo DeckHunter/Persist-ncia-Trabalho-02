@@ -32,12 +32,11 @@ public class Filme {
 	@JoinTable(name = "FILME_ATOR", joinColumns = @JoinColumn(name="filmeId"), inverseJoinColumns = @JoinColumn(name="atorId"))
 	private List<Ator> atores;
 
-	public Filme(Integer idFilme, String tituloFilme, int anoDeLancamento, List<Ator> atores) {
+	public Filme(Integer idFilme, String tituloFilme, int anoDeLancamento) {
 		super();
 		this.idFilme = idFilme;
 	 	this.tituloFilme = tituloFilme;
 		this.anoDeLancamento = anoDeLancamento;
-		this.atores = atores;
 	}
 
 	public Filme() {

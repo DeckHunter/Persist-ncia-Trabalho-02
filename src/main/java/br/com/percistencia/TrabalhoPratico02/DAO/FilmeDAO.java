@@ -45,7 +45,10 @@ public class FilmeDAO {
 		filme.setIdFilme(id);
 		filme.setNomeFilme(nome);
 		filme.setAnoDeLancamento(ano);
-		filme.setAtores(atores);
+		
+		if(atores != null) {
+			filme.setAtores(atores);
+		}
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(filme);
