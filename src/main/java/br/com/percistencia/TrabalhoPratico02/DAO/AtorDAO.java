@@ -30,11 +30,11 @@ public class AtorDAO {
 		}
 	}
 	//NamedQuery
-	public void RemoverAtor() {
+	public void RemoverAtor(int id) {
 		Query query = entityManager.createNamedQuery("Ator.addFilme");
 		
 		entityManager.getTransaction().begin();
-		query.setParameter("id", 63).executeUpdate();	
+		query.setParameter("id", id).executeUpdate();	
 		entityManager.getTransaction().commit();
 	}
 	

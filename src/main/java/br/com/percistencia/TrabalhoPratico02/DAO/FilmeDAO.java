@@ -30,11 +30,11 @@ public class FilmeDAO {
 		}
 	}
 	//NamedQuery
-	public void RemoverFilme() {
+	public void RemoverFilme(int id) {
 		Query query = entityManager.createNamedQuery("Filmes.addFilme");
 		
 		entityManager.getTransaction().begin();
-		query.setParameter("id", 99).executeUpdate();
+		query.setParameter("id", id).executeUpdate();
 		entityManager.getTransaction().commit();
 	}
 	

@@ -45,28 +45,45 @@ public class Main {
 				System.out.println("Projeto Finalizado...");
 				break;
 			case "1":
-				MenuAtorCRUD();
-				System.out.println("");
-				System.out.println("Selecione Uma Opção : ");
-				System.out.println("");
-		  	    opCrudFilme = s.nextLine();
-		  	    System.out.println("");
-				while(!opCrudFilme.equals("0")) {
-					switch (opCrudFilme) {
+				opCrudAtor = "s";
+				while(!opCrudAtor.equals("0")) {
+					System.out.println("");
+					MenuAtorCRUD();
+					System.out.println("Selecione Uma Opção : ");
+					System.out.println("");
+					opCrudAtor = s.nextLine();
+			  	    System.out.println("");
+					switch (opCrudAtor) {
 					case "0":
 						MenuPrincipal();
 						break;
 					case "1":
-						System.out.println("Add");
+						System.out.println("ID Do Ator : ");
+						String filmeaddId = s.nextLine();
+						System.out.println("Nome Do Ator : ");
+						String filmeaddNome = s.nextLine();
+						System.out.println("Data De Nascimento Do Ator(Ex: 2001/01/01) : ");
+						String filmeaddData = s.nextLine();
+						
+						atorDAO.AdicionarAtor(Integer.parseInt(filmeaddId), filmeaddNome, filmeaddData);
 						break;
 					case "2":
-						System.out.println("Delete");
+						System.out.println("Id Do Ator Que Vai Ser Deletado : ");
+						String atorRemover = s.nextLine();
+						atorDAO.RemoverAtor(Integer.parseInt(atorRemover));
+						
 						break;
 					case "3":
-						System.out.println("Update");
+						System.out.println("Id Do Ator Que Vai Ser Atualizado : ");
+						String atorUpid = s.nextLine();
+						System.out.println("Nome Do Ator Que Vai Ser Atualizado : ");
+						String atorUpnome = s.nextLine();
+						System.out.println("Data Do Ator Que Vai Ser Atualizado : ");
+						String atorUpdata = s.nextLine();
+						atorDAO.AtualizarAtor(Integer.parseInt(atorUpid), atorUpnome, atorUpdata);
 						break;
 					case "4":
-						System.out.println("Read");
+						atorDAO.ListarAtore();
 						break;
 					default:
 						System.out.println("Opção Invalida");
@@ -75,28 +92,70 @@ public class Main {
 				}
 				break;
 			case "2":
-				MenuFilmeCRUD();
-				System.out.println("");
-				System.out.println("Selecione Uma Opção : ");
-				System.out.println("");
-		  	    opCrudFilme = s.nextLine();
-		  	    System.out.println("");
+		  	    opCrudFilme = "s";
 				while(!opCrudFilme.equals("0")) {
+					
+					System.out.println("");
+					MenuFilmeCRUD();
+					System.out.println("Selecione Uma Opção : ");
+					System.out.println("");
+			  	    opCrudFilme = s.nextLine();
+			  	    System.out.println("");
+			  	    
 					switch (opCrudFilme) {
 					case "0":
 						MenuPrincipal();
 						break;
 					case "1":
-						System.out.println("Add");
+						System.out.println("");
+						System.out.println("ID Do Filme : ");
+						String idFilme = s.nextLine();
+						System.out.println("Nome Do Filme : ");
+						String nomeFilme = s.nextLine();
+						System.out.println("Ano De Lancamento Do Filme : ");
+						String anoFilme = s.nextLine();
+						
+						System.out.println("Quer Adicionar Um Elenco (S/N) ? : ");
+						Scanner sc = new Scanner(System.in);
+						String resposta = sc.next();
+						List<Ator> atores = new ArrayList<Ator>();
+						
+						if(resposta.equals("S")) {
+						    System.out.print("Digite os IDs dos atores que estão no filme sepados por '-' : ");
+						    String idsAtores = sc.next();
+						    
+						    for (String string : idsAtores.split("-")) {
+								Ator ator = entityManager.find(Ator.class, Integer.parseInt(string));
+								atores.add(ator);
+							}
+						    
+						    for (Ator ator : atores) {
+								System.out.println(ator.toString());
+							}
+						    
+						    filmeDAO.AdicionarFilme(Integer.parseInt(idFilme), nomeFilme ,Integer.parseInt(anoFilme), atores);
+						    
+						}if(resposta.equals("N")) {
+							filmeDAO.AdicionarFilme(Integer.parseInt(idFilme), nomeFilme ,Integer.parseInt(anoFilme), atores);
+						};
+						System.out.println("");
 						break;
 					case "2":
-						System.out.println("Delete");
+						System.out.println("Id Do Filme Que Vai Ser Deletado : ");
+						String filmeRemover = s.nextLine();
+						filmeDAO.RemoverFilme(Integer.parseInt(filmeRemover));
 						break;
 					case "3":
-						System.out.println("Update");
+						System.out.println("Id Do Ator Que Vai Ser Atualizado : ");
+						String filmeUpid = s.nextLine();
+						System.out.println("Nome Do Ator Que Vai Ser Atualizado : ");
+						String filmeUpnome = s.nextLine();
+						System.out.println("Data Do Ator Que Vai Ser Atualizado : ");
+						String filmeUpano = s.nextLine();
+						filmeDAO.AtualizarFilme(Integer.parseInt(filmeUpid), filmeUpnome, Integer.parseInt(filmeUpano));
 						break;
 					case "4":
-						System.out.println("Read");
+						filmeDAO.ListarFilmes();
 						break;
 					default:
 						System.out.println("Opção Invalida");
@@ -105,42 +164,70 @@ public class Main {
 				}
 				break;
 			case "3":
-				MenuQuestão04();
-				System.out.println("");
-				System.out.println("Selecione Uma Opção : ");
-				System.out.println("");
-				opQuestão04 = s.nextLine();
-		  	    System.out.println("");
+				opQuestão04 = "s";
 				while(!opQuestão04.equals("0")) {
+					
+					System.out.println("");
+					MenuQuestão04();
+					System.out.println("Selecione Uma Opção : ");
+					System.out.println("");
+					opQuestão04 = s.nextLine();
+			  	    System.out.println("");
+			  	    
 					switch (opQuestão04) {
-					case "0":
-						MenuPrincipal();
-						break;
-					case "a":
-						System.out.println("A");
-						break;
-					case "b":
-						System.out.println("B");
-						break;
-					case "c":
-						System.out.println("C");
-						break;
-					case "d":
-						System.out.println("D");
-						break;
-					case "e":
-						System.out.println("E");
-						break;
-					case "f":
-						System.out.println("F");
-						break;
-					case "g":
-						System.out.println("G");
-						break;
-					default:
-						System.out.println("Opção Invalida");
-						break;
-					}
+						case "0":
+							MenuPrincipal();
+							break;
+						case "a":
+							System.out.println("Digite 'Ator' ou 'Filme' : ");
+							String itemaEscolha = s.nextLine();
+							System.out.println("Digite o ID do Filme/Ator : ");
+							String itema = s.nextLine();
+							System.out.println("");
+							questão04.ItemA(itemaEscolha, Integer.parseInt(itema));
+							break;
+						case "b":
+							System.out.println("Digite o Id : ");
+							System.out.println("");
+							String itemb = s.nextLine();
+					  	    System.out.println("");
+							questão04.ItemB(Integer.parseInt(itemb));
+							break;
+						case "c":
+							System.out.println("Digite o Id : ");
+							System.out.println("");
+							String itemc = s.nextLine();
+					  	    System.out.println("");
+							questão04.ItemC(Integer.parseInt(itemc));
+							break;
+						case "d":
+							System.out.println("Digite o ano : ");
+							System.out.println("");
+							String itemd = s.nextLine();
+					  	    System.out.println("");
+							questão04.ItemD(Integer.parseInt(itemd));
+							break;
+						case "e":
+							System.out.println("Digite a palavra : ");
+							System.out.println("");
+							String iteme = s.nextLine();
+					  	    System.out.println("");
+							questão04.ItemE(iteme);
+							break;
+						case "f":
+							System.out.println("Digite o Ano : ");
+							System.out.println("");
+							String itemf = s.nextLine();
+					  	    System.out.println("");
+							questão04.ItemF(Integer.parseInt(itemf));
+							break;
+						case "g":
+							questão04.ItemG();
+							break;
+						default:
+							System.out.println("Opção Invalida");
+							break;
+						}
 				}
 				break;
 
@@ -150,49 +237,6 @@ public class Main {
 			}
 		}
 		
-		List<Ator> atores = new ArrayList<Ator>();
-		
-		questão04.ItemA("Ator", 2);
-		questão04.ItemB(398);
-		questão04.ItemC(13);
-		questão04.ItemD(1111);
-		questão04.ItemE("dd");
-		questão04.ItemF(1994);
-		questão04.ItemG();
-		
-		/*System.out.println("Quer Adicionar Um Elenco (S/N) ? : ");
-		Scanner sc = new Scanner(System.in);
-		String resposta = sc.next();
-		
-		if(resposta.equals("S")) {
-		    System.out.print("Digite os IDs dos atores que estão no filme sepados por '-' : ");
-		    String idsAtores = sc.next();
-		    
-		    for (String string : idsAtores.split("-")) {
-				Ator ator = entityManager.find(Ator.class, Integer.parseInt(string));
-				atores.add(ator);
-			}
-		    
-		    for (Ator ator : atores) {
-				System.out.println(ator.toString());
-			}
-		    
-		    filmeDAO.AdicionarFilme(999, "Vou 171" ,2023, atores);
-		    
-		}if(resposta.equals("N")) {
-			filmeDAO.AdicionarFilme(1000, "Deus e vc" ,2023, atores);
-		}*/
-		
-		//atorDAO.ListarAtore();
-		//filmeDAO.ListarFilmes();
-		
-		//filmeDAO.RemoverFilme();
-		//atorDAO.RemoverAtor();
-		
-		
-		//atorDAO.AdicionarAtor();
-		//filmeDAO.AtualizarFilme(13, "The Deus", 2002);
-		//atorDAO.AtualizarAtor(5, "João", "1999/10/21");
 		entityManager.close();
 		entityManagerFactory.close();
 		  
